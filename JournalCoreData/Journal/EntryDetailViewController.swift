@@ -20,6 +20,10 @@ class EntryDetailViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        if let entry = entry {
+            updateWithEntry(entry)
+        }
+        
     }
 
     @IBAction func saveButtonTapped(sender: AnyObject) {
@@ -43,9 +47,10 @@ class EntryDetailViewController: UIViewController, UITextFieldDelegate {
     
     func updateWithEntry(entry: Entry) {
         self.entry = entry
-        
         self.titleTextField.text = entry.title
         self.bodyTextView.text = entry.text
+        
+        self.moodSegmentedControl.selectedSegmentIndex = Int(entry.happy)
     }
     
     // MARK: UITextFieldDelegate
@@ -56,5 +61,4 @@ class EntryDetailViewController: UIViewController, UITextFieldDelegate {
         
         return true
     }
-
 }
